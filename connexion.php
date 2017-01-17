@@ -32,18 +32,4 @@ else{
 	<?php
 	include('includes/bas.inc.php');
 }
-
- //if(...){
-//
- /*
-	 requete préparée verif util
-	 generation sid 
-	 stockage sid cookie
-	 stockage sid bdd
-	 redirection
- }
- else{
-	 form html<form post>	
- }
- */
- ?>
+?>

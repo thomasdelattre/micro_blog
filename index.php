@@ -1,7 +1,7 @@
 <?php
 include('includes/connexion.inc.php');
 include('includes/haut.inc.php');
-
+$mpp=4;
 ?>
 <?php if($pseudo!=""){ ?>
 <div class="row">              
@@ -27,7 +27,7 @@ include('includes/haut.inc.php');
 			
 			<div class="col-sm-2">
 				
-				<button type="submit" class="btn btn-success btn-lg">Envoyer</button>
+				<button type="submit"  class="btn btn-success btn-lg">Envoyer</button>
 				
 			</div>   
 
@@ -35,7 +35,12 @@ include('includes/haut.inc.php');
 	</div>
 	<?php }?> 
 	<?php
-	$query = 'SELECT * FROM messages ORDER BY date DESC';
+	if(isset($_GET['page'])){
+		$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date FROM messages INNER JOIN utilisateurs ON messages.id_utilisateurs=utilisateurs.id ORDER BY date DESC LIMIT '.($_GET['page']*$mpp-$mpp).','.$mpp;
+	}
+	else{
+		$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date FROM messages INNER JOIN utilisateurs ON messages.id_utilisateurs=utilisateurs.id ORDER BY date DESC LIMIT 0,'.$mpp;
+	}
 	$stmt = $pdo->query($query);
 
 	while ($data = $stmt->fetch()) {
@@ -46,13 +51,61 @@ include('includes/haut.inc.php');
 		</br>
 		<?= date("d/m/Y H:i:s", $data['date']) ?>
 	</br>
-	<?php if($pseudo!=""){ ?>
-	<a role="button" class="btn btn-info btn-default " href="index.php?id=<?=$data['id']; ?>">Modifier</a>
-	<a role="button" class="btn btn-danger btn-default" href="sup_message.php?id=<?=$data['id']; ?>">Supprimer</a>
-	<?php }?>
+	<?= $data['pseudo'] ?>
+</br>
+<?php if($pseudo==$data['pseudo']){ ?>
+<a role="button" class="btn btn-info btn-default " href="index.php?id=<?=$data['idMessage']; ?>">Modifier</a>
+<a role="button" class="btn btn-danger btn-default" href="sup_message.php?id=<?=$data['idMessage']; ?>">Supprimer</a>
+<?php }?>
 </blockquote>
 <?php
 }
 ?>
+<div class="col-md-offset-4">
+	<nav aria-label="Page navigation">
+		<ul class="pagination pagination-lg ">
 
-<?php include('includes/bas.inc.php'); ?>
+
+			<?php if(isset($_GET['page']) && $_GET['page']!=1){ ?>
+			<li>
+				<a href="index.php?page=<?php echo $_GET['page']-1 ?>" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+			<?php } ?>
+
+
+			<?php 
+			$query = 'SELECT count(id) AS nbreId FROM messages'; 
+			$stmt=$pdo->query($query);
+			while ($data = $stmt->fetch()) {
+				$nbreMessages=$data['nbreId'];
+			}
+
+			$nbrePages=($nbreMessages) ? ceil($nbreMessages/$mpp) : 1;
+
+			for($i=0;$i<$nbrePages;$i++){
+				?>
+				<li><a href="index.php?page=<?php echo $i+1 ?>">  <?=$i+1 ?>   </a></li>
+				<?php } ?>
+
+
+				<?php if(!isset($_GET['page']) || $_GET['page']<$nbrePages){ 
+					if($nbreMessages>$mpp){?>
+					<li>
+						<a href="index.php?page=<?php 
+						if(isset($_GET['page']) && $_GET['page']!=1){
+							echo $_GET['page']+1;
+						}else{
+							echo 2;
+						} ?>" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+				<?php } } ?>
+			</ul>
+		</nav>
+	</div>
+
+	<?php include('includes/bas.inc.php'); ?>
+

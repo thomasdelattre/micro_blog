@@ -1,20 +1,20 @@
 
-        </div>
-    </section>
+</div>
+</section>
 
 
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-md-4">
-                        <h3>Location</h3>
-                        <p>3481 Melrose Place
-                            <br>Beverly Hills, CA 90210</p>
+<!-- Footer -->
+<footer class="text-center">
+    <div class="footer-above">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col col-md-4">
+                    <h3>Location</h3>
+                    <p>3481 Melrose Place
+                        <br>Beverly Hills, CA 90210</p>
                     </div>
                     <div class="footer-col col-md-4">
-                        
+
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>A propos</h3>
@@ -53,6 +53,29 @@
     <!-- Theme JavaScript -->
     <script src="js/freelancer.min.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('#formConnexion').submit(function(){
+                var email =$('#email').val();
+                var mdp =$('#mdp').val();
+
+                if(email==""){
+                    $('#msgErreur').removeClass("hidden").addClass("visible alert alert-danger").html("Veuillez entrer un email");
+                    $('#email').addClass("alert alert-danger");
+                    return false;
+                }
+                else if(mdp==""){
+                    $('#msgErreur').removeClass("hidden").addClass("visible alert alert-danger").html("Veuillez entrer un mot de passe");
+                    $('#mdp').addClass("alert alert-danger");
+                    return false;
+                }
+                else{
+                    return true;
+                }
+                
+            })
+        });
+    </script>
 </body>
 
 </html>

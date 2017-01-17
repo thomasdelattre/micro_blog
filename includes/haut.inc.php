@@ -58,7 +58,7 @@
                             }
                             else{
                                 ?>
-                                 <a id="buttonConnexion" href="deconnexion.php">Deconnexion - <?= $pseudo ?></a>
+                                <a id="buttonConnexion" href="deconnexion.php">Deconnexion - <?= $pseudo ?></a>
                                 <?php
                             }
                             ?>
@@ -98,15 +98,16 @@
                                     <h4 class="modal-title">Connexion</h4>
                                 </div>
                                 <div class="modal-body" style="text-align: center; font-size: 1.1em">
-                                    <form action="connexion.php" method="post">
+                                    <form action="connexion.php" id="formConnexion" method="post">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Email</label>
-                                            <input type="email" class="form-control" name="email" required placeholder="Email">
+                                            <input type="email" id="email" class="form-control" name="email" placeholder="Email">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Mot de passe</label>
-                                            <input type="password" class="form-control" name="mdp" required placeholder="Password">
+                                            <input type="password" id="mdp" class="form-control" name="mdp" placeholder="Password">
                                         </div>
+                                        <div class="hidden" id="msgErreur">Faux</div>
                                         <button class="btn btn-success" type="submit" style="margin-top: 20px">Connexion</button>
                                     </form>
                                 </div>
