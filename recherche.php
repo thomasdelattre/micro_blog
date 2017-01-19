@@ -3,6 +3,7 @@ include('includes/connexion.inc.php');
 include('includes/haut.inc.php');
 $mpp=4;
 
+//si l'utilisateur est connecté, cette div lui permet de publier un message
 if($pseudo!=""){ ?>
 <div class="row">              
 	<form method="post" action="message.php">
@@ -55,29 +56,32 @@ else{
 }
 $stmt = $pdo->query($query);
 
+	//boucle qui affiche le contenu, la date et le pseudo des messages récupérée dans la requete
 while ($data = $stmt->fetch()) {
 	?>
 
 	<blockquote>
 		<?= $data['contenu'] ?>
-	</br>
-	<?= date("d/m/Y H:i:s", $data['date']) ?>
-</br>
-<?= $data['pseudo'] ?>
-</br>
-<?php if($pseudo==$data['pseudo']){ ?>
-<a role="button" class="btn btn-info btn-default " href="index.php?id=<?=$data['idMessage']; ?>">Modifier</a>
-<a role="button" class="btn btn-danger btn-default" href="sup_message.php?id=<?=$data['idMessage']; ?>">Supprimer</a>
-<?php }?>
-</blockquote>
+		</br>
+		<?= date("d/m/Y H:i:s", $data['date']) ?>
+		</br>
+		<?= $data['pseudo'] ?>
+		</br>
+		<!-- Si le pseudo de l'utilisateur connecté correspond au pseudo du message, il a la possibilité de le modifier ou de le supprimer -->
+		<?php if($pseudo==$data['pseudo']){ ?>
+			<a role="button" class="btn btn-info btn-default " href="index.php?id=<?=$data['idMessage']; ?>">Modifier</a>
+			<a role="button" class="btn btn-danger btn-default" href="sup_message.php?id=<?=$data['idMessage']; ?>">Supprimer</a>
+		<?php }?>
+	</blockquote>
 <?php
 }
 ?>
+<!-- Div contenant la pagination-->
 <div class="col-md-offset-4">
 	<nav aria-label="Page navigation">
 		<ul class="pagination pagination-lg ">
 
-
+<!-- Si l'utilisateur n'est pas sur la premiere page, affiche le bouton de page precedente-->
 			<?php if(isset($_GET['page']) && $_GET['page']!=1){ ?>
 			<li>
 				<a href="recherche.php?contenu=<?= $_GET['contenu']?>&amp;page=<?php echo $_GET['page']-1 ?>" aria-label="Previous">
@@ -88,6 +92,8 @@ while ($data = $stmt->fetch()) {
 
 
 			<?php 
+			//on recupere le nombre de message afin de calculer le nombre de pages
+
 			$query = 'SELECT count(id) AS nbreId FROM messages WHERE contenu LIKE "%'.$_GET['contenu'].'%"'; 
 			$stmt=$pdo->query($query);
 			while ($data = $stmt->fetch()) {
@@ -96,15 +102,17 @@ while ($data = $stmt->fetch()) {
 
 			$nbrePages=($nbreMessages) ? ceil($nbreMessages/$mpp) : 1;
 
+			//on crée un bouton pour chaque page présente
 			for($i=0;$i<$nbrePages;$i++){
 				?>
 				<li><a href="recherche.php?contenu=<?= $_GET['contenu']?>&amp;page=<?php echo $i+1 ?>">  <?=$i+1 ?>   </a></li>
 				<?php } ?>
-
+				<!-- Si l'utilisateur n'est pas sur la derniere page, affiche le bouton de page suivante -->
 
 				<?php if(!isset($_GET['page']) || $_GET['page']<$nbrePages){ 
 					if($nbreMessages>$mpp){?>
 					<li>
+					<!-- balise a du bouton suivant qui renvoie a la page 2 si le numero de page n'est pas encore defini, et a la page suivante si le numero de page est defini -->
 						<a href="recherche.php?contenu=<?= $_GET['contenu']?>&amp;page=<?php 
 						if(isset($_GET['page']) && $_GET['page']!=1){
 							echo $_GET['page']+1;

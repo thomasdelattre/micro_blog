@@ -54,6 +54,7 @@
     <script src="js/freelancer.min.js"></script>
 
     <script>
+    //script JQUERY servant a afficher les messages d'erreur lors de la connexion si l'utilsateur n'a pas rentré d'adresse email ou de mot de passe
         $(document).ready(function() {
             $('#formConnexion').submit(function(){
                 var email =$('#email').val();

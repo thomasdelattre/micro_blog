@@ -50,6 +50,7 @@
                             <a href="#page-top"></a>
                         </li>
                         <li class="page-scroll">
+                        <!-- Boutons connexion et inscription si l'utilisateur n'est pas connecté et bouton deconnexion s'il est connecté -->
                             <?php
                             if($pseudo==""){
                                 ?>
@@ -63,11 +64,12 @@
                         }
                         else{
                             ?>
-                            <a id="buttonConnexion" href="deconnexion.php">Deconnexion - <?= $pseudo ?></a>
+                            <a id="buttonDeconnexion" href="deconnexion.php">Deconnexion - <?= $pseudo ?></a>
                         </li>
                         <?php
                     }
                     ?>
+                    <!-- Champ permettant de rechercher un message qui envoie à la page recherche.php ou le traitement de la recherche est effectué -->
                     <li>
 
                         <form action="recherche.php" method="get" style="display:flex;margin-top:7px;margin-left: 20px;">
@@ -98,20 +100,22 @@
     </div>
 </header>
 
-<!-- About Section -->
+
 <section>
     <div class="container">
-        <!-- Modal -->
+
+        <!-- Modal contenant le formulaire de connexion -->
         <div class="modal fade" id="modalConnexion" role="dialog">
             <div class="modal-dialog">
-
-                <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
+                        <!-- Bouton permettant de fermer le modal-->
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!-- Titre du modal-->
                         <h4 class="modal-title" style="text-align: center;">Connexion</h4>
                     </div>
                     <div class="modal-body" style="text-align: left; font-size: 1.1em">
+                        <!-- Formulaire renvoyant a la page connexion.php qui permet de se connecter en fonction de l'email et du mdp précisé dans le formulaire -->
                         <form action="connexion.php" id="formConnexion" method="post">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
@@ -121,7 +125,8 @@
                                 <label for="exampleInputPassword1">Mot de passe</label>
                                 <input type="password" id="mdp" class="form-control" name="mdp" placeholder="Mot de passe">
                             </div>
-                            <div class="hidden" id="msgErreur">Faux</div>
+                            <!-- div qui sera affichée quand l'utilisateur n'aura pas mis d'email ou de mdp -->
+                            <div class="hidden" id="msgErreur"></div>
 
                         </div>
                         <div class="modal-footer">
@@ -135,17 +140,18 @@
         </div>
 
 
-        <!-- Modal -->
+        <!-- Modal contenant le formulaire d'inscription -->
         <div class="modal fade" id="modalInscription" role="dialog">
             <div class="modal-dialog">
 
-                <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
+                    <!-- Entete du modal -->
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" style="text-align: center;">Inscription</h4>
                     </div>
                     <div class="modal-body" style="text-align: left; font-size: 1.1em">
+                        <!-- Formulaire d'inscription avec le nom, prénom, pseudo, email et mot de passe -->
                         <form action="inscription.php" id="formInscription" method="post">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nom</label>
@@ -167,7 +173,6 @@
                                 <label for="exampleInputPassword1">Mot de passe</label>
                                 <input type="password" id="mdp" class="form-control" name="mdp" required placeholder="Mot de passe">
                             </div>
-                            <div class="hidden" id="msgErreur">Faux</div>
 
                         </div>
                         <div class="modal-footer">
