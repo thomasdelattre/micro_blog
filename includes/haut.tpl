@@ -50,29 +50,21 @@
                             <a href="#page-top"></a>
                         </li>
                         <li class="page-scroll">
-                        <!-- Boutons connexion et inscription si l'utilisateur n'est pas connecté et bouton deconnexion s'il est connecté -->
-                            <?php
-                            if($pseudo==""){
-                                ?>
-
+                            <!-- Boutons connexion et inscription si l'utilisateur n'est pas connecté et bouton deconnexion s'il est connecté -->
+                                 {if $pseudo eq ""}
                                 <a id="buttonConnexion" data-toggle="modal" data-target="#modalConnexion">Connexion</a>
                             </li>
                             <li>
                                 <a id="buttonInscription" data-toggle="modal" data-target="#modalInscription">Inscription</a>
                             </li>
-                            <?php
-                        }
-                        else{
-                            ?>
-                            <a id="buttonDeconnexion" href="deconnexion.php">Deconnexion - <?= $pseudo ?></a>
+                            {else}
+                            <a id="buttonDeconnexion" href="deconnexion.php">Deconnexion - {$pseudo}</a>
                         </li>
-                        <?php
-                    }
-                    ?>
+                        {/if}
                     <!-- Champ permettant de rechercher un message qui envoie à la page recherche.php ou le traitement de la recherche est effectué -->
                     <li>
 
-                        <form action="recherche.php" method="get" style="display:flex;margin-top:7px;margin-left: 20px;">
+                        <form action="index.php" method="get" style="display:flex;margin-top:7px;margin-left: 20px;">
                             <input type="text" style="border-radius:10px 0 0 10px" placeholder="Rechercher" name="contenu" id="schbox" class="form-control">
                             <button class="btn glyphicon glyphicon-search" type="submit" style="border-radius:0 10px 10px 0" ></button>
                         </form>
@@ -146,7 +138,7 @@
 
                 <div class="modal-content">
                     <div class="modal-header">
-                    <!-- Entete du modal -->
+                        <!-- Entete du modal -->
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title" style="text-align: center;">Inscription</h4>
                     </div>

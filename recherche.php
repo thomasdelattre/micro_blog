@@ -37,8 +37,8 @@ if($pseudo!=""){ ?>
 	<?php }  
 
 //Requete permettant de recuperer les messages pour le contenu recherché, et d'en afficher que 4 par page
-if(isset($_GET['page'])){
-	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date 
+if(isset($_GET['page']) && isset($_GET['contenu'])){
+    	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date 
 	FROM messages 
 	INNER JOIN utilisateurs ON messages.id_utilisateurs=utilisateurs.id 
 	WHERE contenu LIKE "%'.$_GET['contenu'].'%"
@@ -46,12 +46,25 @@ if(isset($_GET['page'])){
 	ORDER BY date DESC 
 	LIMIT '.($_GET['page']*$mpp-$mpp).','.$mpp;
 }
-else{
-	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date 
+else if(!isset($_GET['page']) && isset($_GET['contenu'])){
+    	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date 
 	FROM messages 
 	INNER JOIN utilisateurs ON messages.id_utilisateurs=utilisateurs.id 
 	WHERE contenu LIKE "%'.$_GET['contenu'].'%"
 	OR pseudo LIKE "%'.$_GET['contenu'].'%"
+	ORDER BY date DESC LIMIT 0,'.$mpp;
+}
+else if(isset($_GET['page'])){
+	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date 
+	FROM messages 
+	INNER JOIN utilisateurs ON messages.id_utilisateurs=utilisateurs.id 
+	ORDER BY date DESC 
+	LIMIT '.($_GET['page']*$mpp-$mpp).','.$mpp;
+}
+else{
+	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date 
+	FROM messages 
+	INNER JOIN utilisateurs ON messages.id_utilisateurs=utilisateurs.id 
 	ORDER BY date DESC LIMIT 0,'.$mpp;
 }
 $stmt = $pdo->query($query);
@@ -62,16 +75,16 @@ while ($data = $stmt->fetch()) {
 
 	<blockquote>
 		<?= $data['contenu'] ?>
-		</br>
+		<br/>
 		<?= date("d/m/Y H:i:s", $data['date']) ?>
-		</br>
+		<br/>
 		<?= $data['pseudo'] ?>
-		</br>
+		<br/>
 		<!-- Si le pseudo de l'utilisateur connecté correspond au pseudo du message, il a la possibilité de le modifier ou de le supprimer -->
 		<?php if($pseudo==$data['pseudo']){ ?>
 			<a role="button" class="btn btn-info btn-default " href="index.php?id=<?=$data['idMessage']; ?>">Modifier</a>
 			<a role="button" class="btn btn-danger btn-default" href="sup_message.php?id=<?=$data['idMessage']; ?>">Supprimer</a>
-		<?php }?>
+		<?php } ?>
 	</blockquote>
 <?php
 }
