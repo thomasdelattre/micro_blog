@@ -57,7 +57,7 @@ while($data=$stmt->fetch()){
 	$list_contenu[$i]['contenu'] = $data['contenu'];
 	$list_contenu[$i]['idMessage'] = $data['idMessage'];
 	$list_contenu[$i]['pseudo'] = $data['pseudo'];
-	$list_contenu[$i]['date'] = $data['date'];
+	$list_contenu[$i]['date'] = date("d/m/Y H:i:s", $data['date']);
 	$i++;
 }
 
