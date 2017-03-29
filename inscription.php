@@ -9,6 +9,7 @@ $execInsert=true;
 $query='SELECT pseudo, email FROM utilisateurs';
 $stmt=$pdo->query($query);
 while($data=$stmt->fetch()){
+    
 	if($data['pseudo']==$_POST['pseudo']){
 		//variable servant à ne pas executer la requete d'insertion de l'utilisateur si le pseudo est deja utilisé
 		$execInsert=false;

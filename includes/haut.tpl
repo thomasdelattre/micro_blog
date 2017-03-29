@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- Theme CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
-
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script> 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">

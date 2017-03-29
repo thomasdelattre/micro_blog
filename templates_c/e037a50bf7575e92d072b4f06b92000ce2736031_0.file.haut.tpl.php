@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-02-28 13:30:04
+/* Smarty version 3.1.30, created on 2017-03-14 18:01:16
   from "C:\Program Files (x86)\EasyPHP-Devserver-16.1\eds-www\micro_blog - Copie\includes\haut.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_58b56d4c94f330_59137413',
+  'unifunc' => 'content_58c821dcea7879_05912010',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e037a50bf7575e92d072b4f06b92000ce2736031' => 
     array (
       0 => 'C:\\Program Files (x86)\\EasyPHP-Devserver-16.1\\eds-www\\micro_blog - Copie\\includes\\haut.tpl',
-      1 => 1488285002,
+      1 => 1489510872,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_58b56d4c94f330_59137413 (Smarty_Internal_Template $_smarty_tpl) {
+function content_58c821dcea7879_05912010 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -39,7 +39,9 @@ function content_58b56d4c94f330_59137413 (Smarty_Internal_Template $_smarty_tpl)
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- Theme CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
-
+    <?php echo '<script'; ?>
+ type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"><?php echo '</script'; ?>
+> 
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
