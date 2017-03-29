@@ -22,7 +22,7 @@
         <div class="col-sm-10">  
             <div class="form-group">            
                <p id="apercuexpreg" name="apercuexpreg" class="form-control"></p>
-               <input type="hidden" id="apercu1" name="apercu1" value="{$getID}"></input>     
+               <input type="hidden" id="apercu1" name="apercu1" value="{$getID}" />
             </div>
         </div>
                        
@@ -85,26 +85,7 @@
 </div>
 {/if}
 
-<script>
-$(function(){
-  $('#message').keyup(function(){
-     $('#apercu').removeClass("hidden");
-    
-     var msg1 = document.getElementById('message').value;
-    $.get('apercu.php',
-    {
-      message:msg1
-    },
-      function(data){
-        
-        document.getElementById("apercuexpreg").innerHTML = data;
-       
-      }
-      );
-  });
-});
-  
-</script>
+
 
 {include file='includes/bas.tpl'}
 

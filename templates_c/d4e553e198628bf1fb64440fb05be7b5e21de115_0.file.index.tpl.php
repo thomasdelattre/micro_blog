@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2017-03-29 16:30:34
+/* Smarty version 3.1.30, created on 2017-03-29 17:44:48
   from "C:\Program Files (x86)\EasyPHP-Devserver-16.1\eds-www\micro_blog - Copie\index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_58dbc50abe18c6_45679499',
+  'unifunc' => 'content_58dbd67033cab6_33597233',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd4e553e198628bf1fb64440fb05be7b5e21de115' => 
     array (
       0 => 'C:\\Program Files (x86)\\EasyPHP-Devserver-16.1\\eds-www\\micro_blog - Copie\\index.tpl',
-      1 => 1490797799,
+      1 => 1490802211,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:includes/bas.tpl' => 1,
   ),
 ),false)) {
-function content_58dbc50abe18c6_45679499 (Smarty_Internal_Template $_smarty_tpl) {
+function content_58dbd67033cab6_33597233 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:includes/haut.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -54,7 +54,7 @@ echo $_smarty_tpl->tpl_vars['id']->value;
             <div class="form-group">            
                <p id="apercuexpreg" name="apercuexpreg" class="form-control"></p>
                <input type="hidden" id="apercu1" name="apercu1" value="<?php echo $_smarty_tpl->tpl_vars['getID']->value;?>
-"></input>     
+" />
             </div>
         </div>
                        
@@ -149,28 +149,7 @@ if (isset($_GET['contenu'])) {?>&amp;contenu=<?php echo $_GET['contenu'];
 </div>
 <?php }?>
 
-<?php echo '<script'; ?>
->
-$(function(){
-  $('#message').keyup(function(){
-     $('#apercu').removeClass("hidden");
-    
-     var msg1 = document.getElementById('message').value;
-    $.get('apercu.php',
-    {
-      message:msg1
-    },
-      function(data){
-        
-        document.getElementById("apercuexpreg").innerHTML = data;
-       
-      }
-      );
-  });
-});
-  
-<?php echo '</script'; ?>
->
+
 
 <?php $_smarty_tpl->_subTemplateRender("file:includes/bas.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>

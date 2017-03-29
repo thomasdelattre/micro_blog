@@ -14,7 +14,8 @@
                         <br>Beverly Hills, CA 90210</p>
                     </div>
                     <div class="footer-col col-md-4">
-
+                        <a class="icone facebook" href="http://www.facebook.com" target="_blank" ></a>
+                        <a class="icone twitter" href="http://www.twitter.com" target="_blank" ></a>
                     </div>
                     <div class="footer-col col-md-4">
                         <h3>A propos</h3>
@@ -52,31 +53,27 @@
 
     <!-- Theme JavaScript -->
     <script src="js/freelancer.min.js"></script>
-
     <script>
-    //script JQUERY servant a afficher les messages d'erreur lors de la connexion si l'utilsateur n'a pas rentré d'adresse email ou de mot de passe
-        $(document).ready(function() {
-            $('#formConnexion').submit(function(){
-                var email =$('#email').val();
-                var mdp =$('#mdp').val();
-
-                if(email==""){
-                    $('#msgErreur').removeClass("hidden").addClass("visible alert alert-danger").html("Veuillez entrer un email");
-                    $('#email').addClass("alert alert-danger");
-                    return false;
-                }
-                else if(mdp==""){
-                    $('#msgErreur').removeClass("hidden").addClass("visible alert alert-danger").html("Veuillez entrer un mot de passe");
-                    $('#mdp').addClass("alert alert-danger");
-                    return false;
-                }
-                else{
-                    return true;
-                }
-                
-            })
-        });
-    </script>
+$(function(){
+  $('#message').keyup(function(){
+     $('#apercu').removeClass("hidden");
+    
+     var msg1 = document.getElementById('message').value;
+    $.get('apercu.php',
+    {
+      message:msg1
+    },
+      function(data){
+        
+        document.getElementById("apercuexpreg").innerHTML = data;
+       
+      }
+      );
+  });
+});
+  
+</script>
+   
 </body>
 
 </html>
