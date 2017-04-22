@@ -35,7 +35,7 @@
 
 {capture assign=var}{$u++}{/capture}
 <div style="display:flex;flex-direction:row">
-    <a style="text-decoration:none;" href="#" class="glyphicon glyphicon-thumbs-up voteup vote" data-id="{$contenu.idMessage}" data-u="{$u}"></a>
+    <a style="text-decoration:none;" class="glyphicon glyphicon-thumbs-up voteup vote" data-id="{$contenu.idMessage}" data-u="{$u}"></a>
     <span id="spanVote{$u}" class="vote">{$contenu.votes}</span>
     <blockquote>
         {$contenu.contenu}s
