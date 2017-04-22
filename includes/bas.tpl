@@ -54,14 +54,28 @@
     <!-- Theme JavaScript -->
     <script src="js/freelancer.min.js"></script>
     <script>
+        
+        
 $(function(){
+  $('.voteup').click(function(){
+      var u=this.dataset.u;
+     $.get('getVote.php',
+    {
+      id:this.dataset.id
+    },
+      function(data){
+        document.getElementById("spanVote"+u).innerHTML=data;
+
+      }
+      );
+  });
   $('#message').keyup(function(){
      $('#apercu').removeClass("hidden");
     
-     var msg1 = document.getElementById('message').value;
+     var message = document.getElementById('message').value;
     $.get('apercu.php',
     {
-      message:msg1
+      message:message
     },
       function(data){
         
@@ -70,6 +84,7 @@ $(function(){
       }
       );
   });
+
 });
   
 </script>

@@ -26,3 +26,10 @@
 .twitter:hover{
     background-position: -144px -48px;
 }
+
+.vote {
+    margin-top:auto;
+    margin-bottom:auto;
+    font-size:1.5em;
+    margin-right:20px;
+}

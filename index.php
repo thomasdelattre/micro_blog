@@ -20,7 +20,7 @@ $mpp=4;
 
 //Requete permettant de recuperer les messages pour le contenu recherché, et d'en afficher que 4 par page
 if(isset($_GET['page']) && isset($_GET['contenu'])){
-    	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date 
+    	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date , votes
 	FROM messages 
 	INNER JOIN utilisateurs ON messages.id_utilisateurs=utilisateurs.id 
 	WHERE contenu LIKE "%'.$_GET['contenu'].'%"
@@ -29,7 +29,7 @@ if(isset($_GET['page']) && isset($_GET['contenu'])){
 	LIMIT '.($_GET['page']*$mpp-$mpp).','.$mpp;
 }
 else if(!isset($_GET['page']) && isset($_GET['contenu'])){
-    	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date 
+    	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date, votes 
 	FROM messages 
 	INNER JOIN utilisateurs ON messages.id_utilisateurs=utilisateurs.id 
 	WHERE contenu LIKE "%'.$_GET['contenu'].'%"
@@ -37,14 +37,14 @@ else if(!isset($_GET['page']) && isset($_GET['contenu'])){
 	ORDER BY date DESC LIMIT 0,'.$mpp;
 }
 else if(isset($_GET['page'])){
-	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date 
+	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date, votes 
 	FROM messages 
 	INNER JOIN utilisateurs ON messages.id_utilisateurs=utilisateurs.id 
 	ORDER BY date DESC 
 	LIMIT '.($_GET['page']*$mpp-$mpp).','.$mpp;
 }
 else{
-	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date 
+	$query = 'SELECT contenu, messages.id AS idMessage, pseudo, date, votes 
 	FROM messages 
 	INNER JOIN utilisateurs ON messages.id_utilisateurs=utilisateurs.id 
 	ORDER BY date DESC LIMIT 0,'.$mpp;
@@ -59,7 +59,7 @@ while($data=$stmt->fetch()){
     $pattern = array('/https?:\/\/[a-zA-Z0-9\-\.]+\.[a-z]+\/?/', '/S*#([\w]+\S*)/', '/[0-9a-z-_.]+\@[0-9a-z.]+\.[a-z]+/');
     $matches= array('<a href="$0">$0</a>', '<a href="index.php?contenu=$1">$0</a>', '<a href="mailto:$0">$0</a>');
 	$list_contenu[$i]['contenu'] = preg_replace($pattern, $matches, $contenu);
-    
+    $list_contenu[$i]['votes'] = $data['votes'];
 	$list_contenu[$i]['idMessage'] = $data['idMessage'];
 	$list_contenu[$i]['pseudo'] = $data['pseudo'];
 	$list_contenu[$i]['date'] = date("d/m/Y H:i:s", $data['date']);

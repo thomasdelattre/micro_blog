@@ -30,21 +30,27 @@
 </div>
 {/if}
 
+{$u=0}
 {foreach from=$list_contenu item=contenu}
 
-<blockquote>
-	{$contenu.contenu}
-    <br/>
-    {$contenu.date}
-    <br/>
-    {$contenu.pseudo}
-    <br/>
-    <!-- Si le pseudo de l'utilisateur connecté correspond au pseudo du message, il a la possibilité de le modifier ou de le supprimer -->
-    {if $pseudo eq $contenu.pseudo}
-        <a role="button" class="btn btn-info btn-default " href="index.php?id={$contenu.idMessage}">Modifier</a>
-        <a role="button" class="btn btn-danger btn-default" href="sup_message.php?id={$contenu.idMessage}">Supprimer</a>
-    {/if}
-</blockquote>
+{capture assign=var}{$u++}{/capture}
+<div style="display:flex;flex-direction:row">
+    <a style="text-decoration:none;" href="#" class="glyphicon glyphicon-thumbs-up voteup vote" data-id="{$contenu.idMessage}" data-u="{$u}"></a>
+    <span id="spanVote{$u}" class="vote">{$contenu.votes}</span>
+    <blockquote>
+        {$contenu.contenu}s
+        <br/>
+        {$contenu.date}
+        <br/>
+        {$contenu.pseudo}
+        <br/>
+        <!-- Si le pseudo de l'utilisateur connecté correspond au pseudo du message, il a la possibilité de le modifier ou de le supprimer -->
+        {if $pseudo eq $contenu.pseudo}
+            <a role="button" class="btn btn-info btn-default " href="index.php?id={$contenu.idMessage}">Modifier</a>
+            <a role="button" class="btn btn-danger btn-default" href="sup_message.php?id={$contenu.idMessage}">Supprimer</a>
+        {/if}
+    </blockquote>
+</div>
 
 {/foreach}
 

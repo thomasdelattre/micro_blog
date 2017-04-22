@@ -1,30 +1,18 @@
 <?php
-<<<<<<< HEAD
-/* Smarty version 3.1.30, created on 2017-03-29 17:44:48
-=======
-/* Smarty version 3.1.30, created on 2017-03-02 21:00:58
->>>>>>> b44067fbf096a2e4a99b875355d62bbe118335b7
+/* Smarty version 3.1.30, created on 2017-04-22 15:19:29
   from "C:\Program Files (x86)\EasyPHP-Devserver-16.1\eds-www\micro_blog - Copie\index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-<<<<<<< HEAD
-  'unifunc' => 'content_58dbd67033cab6_33597233',
-=======
-  'unifunc' => 'content_58b879fa719cb7_56021616',
->>>>>>> b44067fbf096a2e4a99b875355d62bbe118335b7
+  'unifunc' => 'content_58fb5861aef460_16651745',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd4e553e198628bf1fb64440fb05be7b5e21de115' => 
     array (
       0 => 'C:\\Program Files (x86)\\EasyPHP-Devserver-16.1\\eds-www\\micro_blog - Copie\\index.tpl',
-<<<<<<< HEAD
-      1 => 1490802211,
-=======
-      1 => 1488484827,
->>>>>>> b44067fbf096a2e4a99b875355d62bbe118335b7
+      1 => 1492867166,
       2 => 'file',
     ),
   ),
@@ -34,11 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:includes/bas.tpl' => 1,
   ),
 ),false)) {
-<<<<<<< HEAD
-function content_58dbd67033cab6_33597233 (Smarty_Internal_Template $_smarty_tpl) {
-=======
-function content_58b879fa719cb7_56021616 (Smarty_Internal_Template $_smarty_tpl) {
->>>>>>> b44067fbf096a2e4a99b875355d62bbe118335b7
+function content_58fb5861aef460_16651745 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender("file:includes/haut.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 
@@ -78,30 +62,43 @@ echo $_smarty_tpl->tpl_vars['id']->value;
 </div>
 <?php }?>
 
-<?php
+<?php $_smarty_tpl->_assignInScope('u', 0);
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['list_contenu']->value, 'contenu');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['contenu']->value) {
 ?>
 
-<blockquote>
-	<?php echo $_smarty_tpl->tpl_vars['contenu']->value['contenu'];?>
+<?php $_smarty_tpl->smarty->ext->_capture->open($_smarty_tpl, 'default', 'var', null);
+echo $_smarty_tpl->tpl_vars['u']->value++;
+$_smarty_tpl->smarty->ext->_capture->close($_smarty_tpl);
+?>
 
-    <br/>
-    <?php echo $_smarty_tpl->tpl_vars['contenu']->value['date'];?>
+<div style="display:flex;flex-direction:row">
+    <a style="text-decoration:none;" href="#" class="glyphicon glyphicon-thumbs-up voteup vote" data-id="<?php echo $_smarty_tpl->tpl_vars['contenu']->value['idMessage'];?>
+" data-u="<?php echo $_smarty_tpl->tpl_vars['u']->value;?>
+"></a>
+    <span id="spanVote<?php echo $_smarty_tpl->tpl_vars['u']->value;?>
+" class="vote"><?php echo $_smarty_tpl->tpl_vars['contenu']->value['votes'];?>
+</span>
+    <blockquote>
+        <?php echo $_smarty_tpl->tpl_vars['contenu']->value['contenu'];?>
+s
+        <br/>
+        <?php echo $_smarty_tpl->tpl_vars['contenu']->value['date'];?>
 
-    <br/>
-    <?php echo $_smarty_tpl->tpl_vars['contenu']->value['pseudo'];?>
+        <br/>
+        <?php echo $_smarty_tpl->tpl_vars['contenu']->value['pseudo'];?>
 
-    <br/>
-    <!-- Si le pseudo de l'utilisateur connecté correspond au pseudo du message, il a la possibilité de le modifier ou de le supprimer -->
-    <?php if ($_smarty_tpl->tpl_vars['pseudo']->value == $_smarty_tpl->tpl_vars['contenu']->value['pseudo']) {?>
-        <a role="button" class="btn btn-info btn-default " href="index.php?id=<?php echo $_smarty_tpl->tpl_vars['contenu']->value['idMessage'];?>
+        <br/>
+        <!-- Si le pseudo de l'utilisateur connecté correspond au pseudo du message, il a la possibilité de le modifier ou de le supprimer -->
+        <?php if ($_smarty_tpl->tpl_vars['pseudo']->value == $_smarty_tpl->tpl_vars['contenu']->value['pseudo']) {?>
+            <a role="button" class="btn btn-info btn-default " href="index.php?id=<?php echo $_smarty_tpl->tpl_vars['contenu']->value['idMessage'];?>
 ">Modifier</a>
-        <a role="button" class="btn btn-danger btn-default" href="sup_message.php?id=<?php echo $_smarty_tpl->tpl_vars['contenu']->value['idMessage'];?>
+            <a role="button" class="btn btn-danger btn-default" href="sup_message.php?id=<?php echo $_smarty_tpl->tpl_vars['contenu']->value['idMessage'];?>
 ">Supprimer</a>
-    <?php }?>
-</blockquote>
+        <?php }?>
+    </blockquote>
+</div>
 
 <?php
 }
